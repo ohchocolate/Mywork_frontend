@@ -8,6 +8,7 @@ import Col from "react-bootstrap/esm/Col";
 import Form from 'react-bootstrap/Form';
 import { useState, useEffect } from "react";
 import { LEETCODE_TAGS } from "../../context.js";
+import Table from 'react-bootstrap/Table';
 
 function PublicLeetcode() {
     const leetcode_tags = LEETCODE_TAGS;
@@ -26,7 +27,7 @@ function PublicLeetcode() {
 
     const refreshLeetcodes = () => {
         const allLeetcodes = problems;
-        if (tag === 'All') {
+        if (tag === 'All' || 'Select one tag' || null || "") {
             setLeetcodes(allLeetcodes);
         } else {
             const tagLeetcodes = [];
@@ -55,7 +56,7 @@ function PublicLeetcode() {
 
     return (
         <Container fluid>
-            <div className="bg-primary bg-opacity-10 ttr-rounded-15px mt-2 p-2">
+            <div className="bg-white bg-opacity-10 ttr-rounded-15px mt-2 p-2">
                 <Form>
                     <Row>
                         <Form.Group controlId="formBasicSelect" as={Col}>
@@ -78,6 +79,7 @@ function PublicLeetcode() {
                                 type="text"
                                 onChange={e => {
                                     selectLeetcode(e.target.value);
+                                    tag = "All";
                                 }}
                             >
                             </Form.Control>
@@ -85,27 +87,34 @@ function PublicLeetcode() {
                     </Row>
                 </Form>
 
-                <h2></h2>
-                <Row>
-                    <Col xs={1}><h3>题号</h3></Col>
-                    <Col xs={2}><h3>题目</h3></Col>
-                    <Col><h3>简介</h3></Col>
-                    <Col xs={1}><h5>重要性</h5></Col>
-                    <Col xs={1}><h5>失败率</h5></Col>
-                </Row>
-                {
-                    leetcodes.map(problem => {
-                        return (
-                            <Row>
-                                <Col xs={1}>{problem.leetcode_id}</Col>
-                                <Col xs={2}>{problem.name}</Col>
-                                <Col>{problem.intro}</Col>
-                                <Col xs={1}>{averageValue(problem.ratings)}</Col>
-                                <Col xs={1}>{averageValue(problem.failure)}</Col>
-                            </Row>
-                        );
-                    })
-                }
+                <p></p>
+
+                <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>题号</th>
+                            <th>题目</th>
+                            <th>简介</th>
+                            <th>重要性</th>
+                            <th>错误率</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            leetcodes.map(problem => {
+                                return (
+                                    <tr>
+                                        <td>{problem.leetcode_id}</td>
+                                        <td>{problem.name}</td>
+                                        <td>{problem.intro}</td>
+                                        <td>{averageValue(problem.ratings)}</td>
+                                        <td>{averageValue(problem.failure)}</td>
+                                    </tr>
+                                );
+                            })
+                        }
+                    </tbody>
+                </Table>
             </div>
         </Container>
     )

@@ -8,6 +8,7 @@ import Col from 'react-bootstrap/Col';
 import Rank from "../rank/rank";
 import PublicLeetcode from "../public_leetcode/publicLeetcode";
 import SingleLeetcode from "../single_leetcode/singleLeetcode";
+import AddNewLeetcode from "../LeetcodeProblem/addNewLeetcode";
 
 function Home() {
 
@@ -26,6 +27,7 @@ function Home() {
                             <Route path="/rank" element={<Rank />} />
                             <Route path="/leetcodes" element={<PublicLeetcode />} />
                             <Route path="/users/:uid/leetcodes/:lid" element={<SingleLeetcode />} />
+                            <Route path="/leetcodes/new" element={<AddNewLeetcode />} />
                         </Routes>
                     </div>
                 </Col>

@@ -1,0 +1,58 @@
+[{
+        "_id": "123q",
+        "leetcode_id": "1",
+        "name": "Two sum",
+        "intro": "找出Array里两个数相加为targe的index,返回一个int[].",
+        "tags": ["Two Pointer"],
+        "ratings": {
+            "Jiao": 5,
+            "Jack": 4,
+            "Eva": 3,
+            "Wen": 2
+        },
+        "failure": {
+            "Jiao": 5,
+            "Jack": 4,
+            "Eva": 3,
+            "Wen": 2
+        }
+    },
+    {
+        "_id": "456",
+        "leetcode_id": "733",
+        "name": "Flood fill",
+        "intro": "不重要.",
+        "tags": ["Graph"],
+        "ratings": {
+            "Jiao": 2,
+            "Jack": 2,
+            "Eva": 1,
+            "Wen": 0
+        },
+        "failure": {
+            "Jiao": 1,
+            "Jack": 1,
+            "Eva": 1,
+            "Wen": 1
+        }
+    },
+    {
+        "_id": "789",
+        "leetcode_id": "57",
+        "name": "Insert interval",
+        "intro": "不重要.",
+        "tags": ["Array"],
+        "ratings": {
+            "Jiao": 5,
+            "Jack": 5,
+            "Eva": 5,
+            "Wen": 5
+        },
+        "failure": {
+            "Jiao": 0,
+            "Jack": 0,
+            "Eva": 0,
+            "Wen": 0
+        }
+    }
+]

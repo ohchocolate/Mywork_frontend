@@ -1,0 +1,21 @@
+[{
+        "_id": "123",
+        "name": "飘神",
+        "today_leetcode": 100
+    },
+    {
+        "_id": "456",
+        "name": "罗神",
+        "today_leetcode": 66
+    },
+    {
+        "_id": "789",
+        "name": "Eva",
+        "today_leetcode": 10
+    },
+    {
+        "_id": "111",
+        "name": "Wen",
+        "today_leetcode": 0
+    }
+]

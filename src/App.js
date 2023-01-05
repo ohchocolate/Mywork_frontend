@@ -3,7 +3,7 @@ import './styles.css';
 import Home from "./components/Home/index";
 
 function App() {
-  return (< Home />);
+    return ( < Home / > );
 }
 
 export default App;

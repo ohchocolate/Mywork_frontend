@@ -176,8 +176,8 @@ function MyLeetcode({ user }) {
                                         </td>
                                         <td>{problem.name}</td>
                                         <td>{problem.intro}</td>
-                                        <td>{problem.importance}</td>
-                                        <td>{problem.repeat}</td>
+                                        <td>{problem.importance.toFixed(0)}</td>
+                                        <td>{problem.repeat.toFixed(0)}</td>
                                     </tr>
                                 );
                             })

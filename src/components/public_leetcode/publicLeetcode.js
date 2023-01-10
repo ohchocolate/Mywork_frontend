@@ -173,8 +173,8 @@ function PublicLeetcode({ user }) {
                                         </td>
                                         <td>{problem.name}</td>
                                         <td>{problem.intro}</td>
-                                        <td>{problem.importance}</td>
-                                        <td>{problem.repeat}</td>
+                                        <td>{problem.importance.toFixed(2)}</td>
+                                        <td>{problem.repeat.toFixed(2)}</td>
                                     </tr>
                                 );
                             })

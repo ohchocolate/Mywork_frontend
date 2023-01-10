@@ -6,16 +6,15 @@ function Navigation({ uid }) {
   const { pathname } = useLocation();
   // console.log(location.pathname);
   const links = [
-    { label: 'Rank', icon: 'fa-square-t', path: '/rank' },
-    { label: 'Leetcode', icon: 'fa-home', path: `/leetcodes` },
-    { label: 'My Leetcode', icon: 'fa-hashtag', path: '/myleetcodes' },
-    { label: 'OA', icon: 'fa-bell', path: '/notifications' },
-    { label: 'My OA', icon: 'fa-envelope', path: '/messages' },
+    { label: 'Rank', icon: 'fa-circle-up', path: '/rank' },
+    { label: 'Job', icon: 'fa-sharp fa-solid fa-phone', path: '/jobs' },
+    { label: 'Leetcode', icon: 'fa-sharp fa-solid fa-chalkboard', path: `/leetcodes` },
+    { label: 'My Leetcode', icon: 'fa-sharp fa-solid fa-bell', path: '/myleetcodes' },
+    { label: 'OA', icon: 'fa-book-copy', path: '/notifications' },
+    { label: 'My OA', icon: 'fa-book', path: '/messages' },
     { label: 'BQ', icon: 'fa-bookmark', path: '/bookmarks' },
     { label: 'My BQ', icon: 'fa-list', path: '/lists' },
-    { label: 'Concept', icon: 'fa-user', path: '/profile' },
-    { label: 'Job List', icon: 'fa-user', path: '/movies' },
-    { label: 'Login', icon: 'fa-user', path: '/login' },
+    { label: 'Concept', icon: 'fa-atom-simple', path: '/profile' },
   ];
   return (
     <div className="ttr-navigation">

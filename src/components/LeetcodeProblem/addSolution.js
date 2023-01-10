@@ -67,99 +67,100 @@ function AddSolution({ user }) {
     }
 
     return (
+        <Container>
+            <Form onSubmit={sendData}>
+                <p></p>
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>题号</th>
+                            <th>题目</th>
+                            <th>简介</th>
+                        </tr>
+                        <tr>
+                            <th>{problem.leetcode_id}</th>
+                            <th>{problem.name}</th>
+                            <td>{problem.intro}</td>
+                        </tr>
+                    </thead>
+                </Table>
+                <Form.Group className="mb-3">
+                    <Form.Label>关键点</Form.Label>
+                    <Form.Control
+                        as="textarea"
+                        type="text"
+                        value={shortAnswer}
+                        rows={2}
+                        onChange={e => {
+                            setShort(e.target.value);
+                        }} />
+                    <Form.Text>
+                        一句话
+                    </Form.Text>
+                </Form.Group>
 
-        <Form onSubmit={sendData}>
-            <p></p>
-            <Table>
-                <thead>
-                    <tr>
-                        <th>题号</th>
-                        <th>题目</th>
-                        <th>简介</th>
-                    </tr>
-                    <tr>
-                        <th>{problem.leetcode_id}</th>
-                        <th>{problem.name}</th>
-                        <td>{problem.intro}</td>
-                    </tr>
-                </thead>
-            </Table>
-            <Form.Group className="mb-3">
-                <Form.Label>关键点</Form.Label>
-                <Form.Control
-                    as="textarea"
-                    type="text"
-                    value={shortAnswer}
-                    rows={2}
-                    onChange={e => {
-                        setShort(e.target.value);
-                    }} />
-                <Form.Text>
-                    一句话
-                </Form.Text>
-            </Form.Group>
+                <Form.Group className="mb-3" >
+                    <Form.Label>分析</Form.Label>
+                    <Form.Control
+                        as="textarea"
+                        type="text"
+                        value={longAnswer}
+                        rows={4}
+                        onChange={e => {
+                            setLong(e.target.value);
+                        }} />
+                    <Form.Text>
+                        详细分析
+                    </Form.Text>
+                </Form.Group>
 
-            <Form.Group className="mb-3" >
-                <Form.Label>分析</Form.Label>
-                <Form.Control
-                    as="textarea"
-                    type="text"
-                    value={longAnswer}
-                    rows={4}
-                    onChange={e => {
-                        setLong(e.target.value);
-                    }} />
-                <Form.Text>
-                    详细分析
-                </Form.Text>
-            </Form.Group>
+                <Form.Group className="mb-3" >
+                    <Form.Label>Code</Form.Label>
+                    <Form.Control
+                        as="textarea"
+                        type="text"
+                        rows={10}
+                        value={code}
+                        onChange={e => {
+                            setCode(e.target.value);
+                        }} />
+                    <Form.Text>
+                        代码
+                    </Form.Text>
+                </Form.Group>
 
-            <Form.Group className="mb-3" >
-                <Form.Label>Code</Form.Label>
-                <Form.Control
-                    as="textarea"
-                    type="text"
-                    rows={10}
-                    value={code}
-                    onChange={e => {
-                        setCode(e.target.value);
-                    }} />
-                <Form.Text>
-                    代码
-                </Form.Text>
-            </Form.Group>
+                <Form.Group className="mb-3" >
+                    <Form.Label>评分： 是否重要</Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={importance}
+                        onChange={e => {
+                            setImportance(e.target.value);
+                        }} />
+                    <Form.Text>
+                        1-5 越高越重要
+                    </Form.Text>
+                </Form.Group>
 
-            <Form.Group className="mb-3" >
-                <Form.Label>评分： 是否重要</Form.Label>
-                <Form.Control
-                    type="text"
-                    value={importance}
-                    onChange={e => {
-                        setImportance(e.target.value);
-                    }} />
-                <Form.Text>
-                    1-5 越高越重要
-                </Form.Text>
-            </Form.Group>
+                <Form.Group className="mb-3" >
+                    <Form.Label>评分： 是否建议多刷</Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={repeat}
+                        onChange={e => {
+                            setRepeat(e.target.value);
+                        }} />
+                    <Form.Text>
+                        1-5 越高越容易错
+                    </Form.Text>
+                </Form.Group>
 
-            <Form.Group className="mb-3" >
-                <Form.Label>评分： 是否建议多刷</Form.Label>
-                <Form.Control
-                    type="text"
-                    value={repeat}
-                    onChange={e => {
-                        setRepeat(e.target.value);
-                    }} />
-                <Form.Text>
-                    1-5 越高越容易错
-                </Form.Text>
-            </Form.Group>
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
 
-            <Button variant="primary" type="submit">
-                Submit
-            </Button>
-
-        </Form>
+            </Form>
+        </Container>
     )
 
 }

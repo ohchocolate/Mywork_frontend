@@ -22,13 +22,11 @@
     width: 10%;
 }
 
-.container {
+.all {
     display: flex;
     margin: auto;
 }
 
-
-/* 
 @media only screen and (min-width: 1300px) {
     .ttr-tuiter {
         width: 1225px;
@@ -92,7 +90,6 @@
     }
 }
 
-
 @media only screen and (max-width: 1000px) {
     .ttr-tuiter {
         max-width: 688px;
@@ -115,4 +112,4 @@
     .ttr-navigation .ttr-tuit-button {
         width: 50px;
     }
-} */
+}

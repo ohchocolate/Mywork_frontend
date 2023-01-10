@@ -32,7 +32,7 @@ function SingleLeetcode({ user }) {
                 const othersArr = [];
                 solutions.map(
                     sol => {
-                        if (sol.uid == userId) {
+                        if (sol.uid === userId) {
                             setMine(sol);
                         } else {
                             othersArr.push(sol);

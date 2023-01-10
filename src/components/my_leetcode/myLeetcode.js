@@ -14,7 +14,7 @@ import "./styles.css";
 import * as leetcodeService from "../../services/leetcodes-service";
 import * as solutionsService from "../../services/solutions-service";
 
-function PublicLeetcode({ user }) {
+function MyLeetcode({ user }) {
 
     const leetcode_tags = LEETCODE_TAGS;
     let tag;
@@ -28,21 +28,21 @@ function PublicLeetcode({ user }) {
                     .then((solutions) => {
                         const allLeetcodes = [];
                         for (let each of all) {
-                            each.importance = 0;
-                            each.repeat = 0;
-                            let user = 0;
                             for (let sol of solutions) {
-                                // console.log(sol);
-                                if (sol.leetcode_id === each.leetcode_id) {
-                                    each.importance += sol.ratingImportance;
-                                    each.repeat += sol.ratingRepeat;
-                                    user++;
+                                // console.log(sol.uid);
+                                // console.log(user.googleId);
+                                if (sol.leetcode_id === each.leetcode_id && sol.uid === user.googleId) {
+                                    each.importance = sol.ratingImportance;
+                                    each.repeat = sol.ratingRepeat;
+                                    each.date = sol.date;
+                                    allLeetcodes.push(each);
                                 }
                             }
-                            each.importance /= user;
-                            each.repeat /= user;
-                            allLeetcodes.push(each);
                         }
+                        allLeetcodes.sort((a, b) => {
+                            return Date.parse(b.date) - Date.parse(a.date);
+                        });
+                        // console.log(allLeetcodes);
                         setSelected(allLeetcodes);
                         setAll(allLeetcodes);
                     });
@@ -67,18 +67,21 @@ function PublicLeetcode({ user }) {
 
     const sortProblems = (event) => {
         const sort = event.target.value;
-        const toSort = allLeetcodes;
+        const toSort = selectedLeetcodes;
         if (sort === "leetcode_id") {
-            const sorted = [...toSort].sort((a, b) => a.leetcode_id - b.leetcode_id);
-            setSelected(sorted);
+            toSort.sort((a, b) => { return b.leetcode_id - a.leetcode_id });
+            console.log(toSort);
+            setSelected(toSort);
         } else if (sort === "importance") {
-            const sorted = [...toSort].sort((a, b) => b.importance - a.importance);
-            setSelected(sorted);
+            toSort.sort((a, b) => b.importance - a.importance);
+            console.log(toSort);
+            setSelected(toSort);
         }
         else if (sort === "repeat") {
-            const sorted = [...toSort].sort((a, b) => b.repeat - a.repeat);
-            setSelected(sorted);
+            toSort.sort((a, b) => b.repeat - a.repeat);
+            setSelected(toSort);
         }
+
     }
 
     const selectLeetcode = (leetcode_id) => {
@@ -163,7 +166,7 @@ function PublicLeetcode({ user }) {
                     <tbody>
                         {
                             selectedLeetcodes.map(problem => {
-                                console.log(problem.leetcode_id);
+                                // console.log(problem.leetcode_id);
                                 return (
                                     <tr>
                                         <td>
@@ -173,8 +176,8 @@ function PublicLeetcode({ user }) {
                                         </td>
                                         <td>{problem.name}</td>
                                         <td>{problem.intro}</td>
-                                        <td>{problem.importance.toFixed(2)}</td>
-                                        <td>{problem.repeat.toFixed(2)}</td>
+                                        <td>{problem.importance.toFixed(0)}</td>
+                                        <td>{problem.repeat.toFixed(0)}</td>
                                     </tr>
                                 );
                             })
@@ -186,4 +189,4 @@ function PublicLeetcode({ user }) {
     )
 }
 
-export default PublicLeetcode;
+export default MyLeetcode;

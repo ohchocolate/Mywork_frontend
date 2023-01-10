@@ -87,15 +87,23 @@ function AddNewLeetcode() {
     }, [leetcode_id]);
 
 
-    const sendData = () => {
+    const sendData = (event) => {
 
-        if (leetcode_id === null || leetcode_id === "") {
+        event.preventDefault();
+        const newLeetcode = {};
+        newLeetcode.leetcode_id = event.target[0].value;
+        newLeetcode.name = event.target[1].value;
+        newLeetcode.intro = event.target[2].value;
+        newLeetcode.link = event.target[3].value;
+        newLeetcode.tags = [].slice.call(event.target[4].selectedOptions).map(item => item.value);
+
+        if (newLeetcode.leetcode_id === null || newLeetcode.leetcode_id === "") {
             return null;
         }
 
         let allNumbers = true;
 
-        for (let char of leetcode_id) {
+        for (let char of newLeetcode.leetcode_id) {
             if (char < '0' || char > '9') {
                 allNumbers = false;
                 break;
@@ -104,12 +112,11 @@ function AddNewLeetcode() {
 
         if (allNumbers) {
             if (mongoId === undefined || mongoId === "" || mongoId === null) {
-                leetcodeService.createLeetcode(newProblem).then(() =>
+                leetcodeService.createLeetcode(newLeetcode).then(() =>
                     reset()
                 );
             } else {
-                console.log(mongoId);
-                leetcodeService.updateLeetcode(mongoId, newProblem).then(() =>
+                leetcodeService.updateLeetcode(mongoId, newLeetcode).then(() =>
                     reset()
                 );
             }
@@ -122,22 +129,14 @@ function AddNewLeetcode() {
 
     return (
 
-        <Form>
+        <Form onSubmit={sendData}>
             <p></p>
             <Form.Group className="mb-3">
                 <Form.Label>题号</Form.Label>
                 <Form.Control
                     type="text"
                     onChange={e => {
-                        // console.log(e.target.value)
                         setID(e.target.value);
-                        setProblem({
-                            "leetcode_id": e.target.value,
-                            "name": name,
-                            "intro": intro,
-                            "link": link,
-                            "tags": tags
-                        });
                     }} />
                 <Form.Text>
                     如果重复上传可自动更新
@@ -151,13 +150,6 @@ function AddNewLeetcode() {
                     value={name}
                     onChange={e => {
                         setName(e.target.value);
-                        setProblem({
-                            "leetcode_id": leetcode_id,
-                            "name": e.target.value,
-                            "intro": intro,
-                            "link": link,
-                            "tags": tags
-                        });
                     }} />
                 <Form.Text>
                     Leetcode题目
@@ -172,13 +164,6 @@ function AddNewLeetcode() {
                     value={intro}
                     onChange={e => {
                         setIntro(e.target.value);
-                        setProblem({
-                            "leetcode_id": leetcode_id,
-                            "name": name,
-                            "intro": e.target.value,
-                            "link": link,
-                            "tags": tags
-                        });
                     }} />
                 <Form.Text>
                     一句话理解题意
@@ -192,13 +177,6 @@ function AddNewLeetcode() {
                     value={link}
                     onChange={e => {
                         setLink(e.target.value);
-                        setProblem({
-                            "leetcode_id": leetcode_id,
-                            "name": name,
-                            "intro": intro,
-                            "link": e.target.value,
-                            "tags": tags
-                        });
                     }} />
                 <Form.Text>
                     Leetcode Link
@@ -214,15 +192,7 @@ function AddNewLeetcode() {
                     onChange={e => {
                         const tagsArr = [].slice.call(e.target.selectedOptions).map(item => item.value);
                         setTags(tagsArr);
-                        setProblem({
-                            "leetcode_id": leetcode_id,
-                            "name": name,
-                            "intro": intro,
-                            "link": link,
-                            "tags": tagsArr
-                        });
                     }}
-
                 >
                     {LEETCODE_TAGS.map(option => {
                         return <option value={option}>{option}</option>
@@ -233,7 +203,7 @@ function AddNewLeetcode() {
                 </Form.Text>
             </Form.Group>
 
-            <Button variant="primary" type="submit" onClick={sendData} >
+            <Button variant="primary" type="submit">
                 Submit
             </Button>
 

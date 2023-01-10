@@ -14,7 +14,7 @@ import "./styles.css";
 import * as leetcodeService from "../../services/leetcodes-service";
 import * as solutionsService from "../../services/solutions-service";
 
-function PublicLeetcode({ user }) {
+function MyLeetcode({ user }) {
 
     const leetcode_tags = LEETCODE_TAGS;
     let tag;
@@ -28,20 +28,15 @@ function PublicLeetcode({ user }) {
                     .then((solutions) => {
                         const allLeetcodes = [];
                         for (let each of all) {
-                            each.importance = 0;
-                            each.repeat = 0;
-                            let user = 0;
                             for (let sol of solutions) {
-                                // console.log(sol);
-                                if (sol.leetcode_id === each.leetcode_id) {
-                                    each.importance += sol.ratingImportance;
-                                    each.repeat += sol.ratingRepeat;
-                                    user++;
+                                console.log(sol.uid);
+                                console.log(user.googleId);
+                                if (sol.leetcode_id === each.leetcode_id && sol.uid === user.googleId) {
+                                    each.importance = sol.ratingImportance;
+                                    each.repeat = sol.ratingRepeat;
+                                    allLeetcodes.push(each);
                                 }
                             }
-                            each.importance /= user;
-                            each.repeat /= user;
-                            allLeetcodes.push(each);
                         }
                         setSelected(allLeetcodes);
                         setAll(allLeetcodes);
@@ -189,4 +184,4 @@ function PublicLeetcode({ user }) {
     )
 }
 
-export default PublicLeetcode;
+export default MyLeetcode;

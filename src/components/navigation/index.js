@@ -8,7 +8,7 @@ function Navigation({ uid }) {
   const links = [
     { label: 'Rank', icon: 'fa-square-t', path: '/rank' },
     { label: 'Leetcode', icon: 'fa-home', path: `/leetcodes` },
-    { label: 'My Leetcode', icon: 'fa-hashtag', path: '/explore' },
+    { label: 'My Leetcode', icon: 'fa-hashtag', path: '/myleetcodes' },
     { label: 'OA', icon: 'fa-bell', path: '/notifications' },
     { label: 'My OA', icon: 'fa-envelope', path: '/messages' },
     { label: 'BQ', icon: 'fa-bookmark', path: '/bookmarks' },

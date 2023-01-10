@@ -40,6 +40,8 @@ function SingleLeetcode({ user }) {
             });
     }, []);
 
+    console.log(leetcode);
+
     return (
         <Container fluid>
             <Form>

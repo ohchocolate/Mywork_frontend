@@ -1,21 +1,21 @@
 [{
         "_id": "123",
-        "name": "飘神",
+        "name": "同学A",
         "today_leetcode": 100
     },
     {
         "_id": "456",
-        "name": "罗神",
+        "name": "同学B",
         "today_leetcode": 66
     },
     {
         "_id": "789",
-        "name": "Eva",
+        "name": "同学C",
         "today_leetcode": 10
     },
     {
         "_id": "111",
-        "name": "Wen",
+        "name": "我",
         "today_leetcode": 0
     }
 ]

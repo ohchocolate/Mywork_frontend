@@ -17,6 +17,7 @@ import * as solutionsServices from "../../services/solutions-service";
 
 function AddSolution({ user }) {
 
+    const { leetcode_id } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
     const { solution, problem } = location.state;
@@ -25,7 +26,6 @@ function AddSolution({ user }) {
     const [code, setCode] = useState("");
     const [importance, setImportance] = useState();
     const [repeat, setRepeat] = useState();
-    const [newSolution, setSolution] = useState({});
 
     useEffect(() => {
         setShort(solution.shortAnswer);
@@ -33,19 +33,19 @@ function AddSolution({ user }) {
         setCode(solution.code);
         setImportance(solution.ratingImportance);
         setRepeat(solution.ratingRepeat);
-        setSolution({
-            "uid": user.googleId,
-            "username": user.name,
-            "leetcode_id": problem.leetcode_id,
-            "shortAnswer": shortAnswer,
-            "longAnswer": longAnswer,
-            "code": code,
-            "ratingImportance": importance,
-            "ratingRepeat": repeat
-        })
     }, [])
 
-    const sendData = () => {
+    const sendData = (event) => {
+        event.preventDefault();
+        const newSolution = {};
+        newSolution.uid = user.googleId;
+        newSolution.username = user.name;
+        newSolution.leetcode_id = leetcode_id;
+        newSolution.shortAnswer = event.target[0].value;
+        newSolution.longAnswer = event.target[1].value;
+        newSolution.code = event.target[2].value;
+        newSolution.ratingImportance = event.target[3].value;
+        newSolution.ratingRepeat = event.target[4].value;
 
         if (newSolution.shortAnswer !== '') {
             if (solution._id) {
@@ -67,7 +67,7 @@ function AddSolution({ user }) {
 
     return (
 
-        <Form>
+        <Form onSubmit={sendData}>
             <p></p>
             <Table>
                 <thead>
@@ -92,16 +92,6 @@ function AddSolution({ user }) {
                     rows={2}
                     onChange={e => {
                         setShort(e.target.value);
-                        setSolution({
-                            "uid": user.googleId,
-                            "username": user.name,
-                            "leetcode_id": problem.leetcode_id,
-                            "shortAnswer": e.target.value,
-                            "longAnswer": longAnswer,
-                            "code": code,
-                            "ratingImportance": importance,
-                            "ratingRepeat": repeat
-                        })
                     }} />
                 <Form.Text>
                     一句话
@@ -117,16 +107,6 @@ function AddSolution({ user }) {
                     rows={4}
                     onChange={e => {
                         setLong(e.target.value);
-                        setSolution({
-                            "uid": user.googleId,
-                            "username": user.name,
-                            "leetcode_id": problem.leetcode_id,
-                            "shortAnswer": shortAnswer,
-                            "longAnswer": e.target.value,
-                            "code": code,
-                            "ratingImportance": importance,
-                            "ratingRepeat": repeat
-                        })
                     }} />
                 <Form.Text>
                     详细分析
@@ -142,16 +122,6 @@ function AddSolution({ user }) {
                     value={code}
                     onChange={e => {
                         setCode(e.target.value);
-                        setSolution({
-                            "uid": user.googleId,
-                            "username": user.name,
-                            "leetcode_id": problem.leetcode_id,
-                            "shortAnswer": shortAnswer,
-                            "longAnswer": longAnswer,
-                            "code": e.target.value,
-                            "ratingImportance": importance,
-                            "ratingRepeat": repeat
-                        })
                     }} />
                 <Form.Text>
                     代码
@@ -165,16 +135,6 @@ function AddSolution({ user }) {
                     value={importance}
                     onChange={e => {
                         setImportance(e.target.value);
-                        setSolution({
-                            "uid": user.googleId,
-                            "username": user.name,
-                            "leetcode_id": problem.leetcode_id,
-                            "shortAnswer": shortAnswer,
-                            "longAnswer": longAnswer,
-                            "code": code,
-                            "ratingImportance": e.target.value,
-                            "ratingRepeat": repeat
-                        })
                     }} />
                 <Form.Text>
                     1-5 越高越重要
@@ -188,23 +148,13 @@ function AddSolution({ user }) {
                     value={repeat}
                     onChange={e => {
                         setRepeat(e.target.value);
-                        setSolution({
-                            "uid": user.googleId,
-                            "username": user.name,
-                            "leetcode_id": problem.leetcode_id,
-                            "shortAnswer": shortAnswer,
-                            "longAnswer": longAnswer,
-                            "code": code,
-                            "ratingImportance": importance,
-                            "ratingRepeat": e.target.value
-                        })
                     }} />
                 <Form.Text>
                     1-5 越高越容易错
                 </Form.Text>
             </Form.Group>
 
-            <Button variant="primary" type="submit" onClick={sendData}>
+            <Button variant="primary" type="submit">
                 Submit
             </Button>
 

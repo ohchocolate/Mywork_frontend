@@ -22,10 +22,13 @@ function SingleLeetcode({ user }) {
     const [otherSolutions, setOthers] = useState([]);
 
     useEffect(() => {
+
         leetcodeService.findLeetcodesByID(lid)
             .then(problem => setLeetcode(problem[0]));
+
         solutionsServices.findSolutionsByLid(lid)
             .then(solutions => {
+                // console.log(solutions);
                 const othersArr = [];
                 solutions.map(
                     sol => {

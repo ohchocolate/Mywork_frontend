@@ -67,21 +67,18 @@ function PublicLeetcode({ user }) {
 
     const sortProblems = (event) => {
         const sort = event.target.value;
-        const toSort = selectedLeetcodes;
+        const toSort = allLeetcodes;
         if (sort === "leetcode_id") {
-            toSort.sort((a, b) => { return b.leetcode_id - a.leetcode_id });
-            console.log(toSort);
-            setSelected(toSort);
+            const sorted = [...toSort].sort((a, b) => a.leetcode_id - b.leetcode_id);
+            setSelected(sorted);
         } else if (sort === "importance") {
-            toSort.sort((a, b) => b.importance - a.importance);
-            console.log(toSort);
-            setSelected(toSort);
+            const sorted = [...toSort].sort((a, b) => b.importance - a.importance);
+            setSelected(sorted);
         }
         else if (sort === "repeat") {
-            toSort.sort((a, b) => b.repeat - a.repeat);
-            setSelected(toSort);
+            const sorted = [...toSort].sort((a, b) => b.repeat - a.repeat);
+            setSelected(sorted);
         }
-
     }
 
     const selectLeetcode = (leetcode_id) => {

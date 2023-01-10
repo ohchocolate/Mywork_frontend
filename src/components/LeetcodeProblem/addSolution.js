@@ -17,7 +17,7 @@ import * as solutionsServices from "../../services/solutions-service";
 
 function AddSolution({ user }) {
 
-    const { leetcode_id } = useParams();
+    const { lid } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
     const { solution, problem } = location.state;
@@ -36,11 +36,12 @@ function AddSolution({ user }) {
     }, [])
 
     const sendData = (event) => {
+
         event.preventDefault();
         const newSolution = {};
         newSolution.uid = user.googleId;
         newSolution.username = user.name;
-        newSolution.leetcode_id = leetcode_id;
+        newSolution.leetcode_id = lid;
         newSolution.shortAnswer = event.target[0].value;
         newSolution.longAnswer = event.target[1].value;
         newSolution.code = event.target[2].value;

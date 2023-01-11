@@ -22,8 +22,6 @@ function Jobs({ user }) {
     const [term, setTerm] = useState("All");
     const [jobType, setType] = useState("All");
 
-    const [applySet, setMyApply] = useState(new Set());
-
     useEffect(() => {
         const selected = [];
         for (let each of allJobs) {
@@ -60,17 +58,15 @@ function Jobs({ user }) {
     }, [])
 
     const toggleApply = (jid) => {
-        const newList = myJobs;
+        let newList;
         if (myJobs.includes(jid)) {
-            setMyJobs(myJobs.filter(my => my !== jid));
-            for (var i = 0; i < newList.length; i++) {
-                if (newList[i] === jid) {
-                    newList.splice(i, 1);
-                }
-            }
+
+            newList = myJobs.filter(my => my !== jid)
+            setMyJobs(newList);
+
         } else {
-            setMyJobs([...myJobs, jid]);
-            newList.push(jid);
+            newList = [...myJobs, jid]
+            setMyJobs(newList);
         }
 
         const newMyJob = {};

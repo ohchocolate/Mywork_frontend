@@ -1,5 +1,6 @@
-const LEETCODE_TAGS = ["-", "All", "String", "Map", "DP", "Greedy", "Tree", "BFS", "DFS", "Binary Search", "Sort", "Matrix", "Two Pointers", "Bit", "Stack", "Heap", "Graph",
-    "Prefix Sum", "Backtracking", "Sliding Window", "Union Find", "Linked List", "Monotonic Stack", "Monotonic Queue", "Trie", "Divide&Conquer", "Binary Search Tree", "Topological Sort", "Randomized&Probability", "Merge Sort", "Quickselect", "Minimum Spanning Tree"
+const LEETCODE_TAGS = ["-", "All", "String", "Linked List", "Map", "Tree", "Stack", "Queue", "Heap", "Graph", "Matrix", "Bit", "Randomized&Probability", "Union Find", "Monotonic Stack", "Monotonic Queue", "Trie", "Sort", "Merge Sort", "Quickselect", "Binary Search", "Topological Sort",
+    "BFS", "DFS", "Minimum Spanning Tree", "Binary Search Tree", "Two Pointers", "Prefix Sum",
+    "Backtracking", "Sliding Window", "Divide&Conquer", "Greedy", "DP"
 ];
 
 const JOBS_TYPES = ["All", "Intern", "Coop", "Full Time"];

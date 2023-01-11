@@ -18,37 +18,37 @@ import EditJobs from "../jobs/EditJobs";
 
 function Home({ user }) {
     return (
-        user && <HashRouter>
-            <div className="all">
-                <Row>
-                    <Col xs={2}>
-                        <div className="left-column">
-                            <Navigation uid={user.googleId} />
-                        </div>
-                    </Col>
-                    <Col>
-                        <div className="center-column">
-                            <Routes>
-                                <Route path="/rank" element={<Rank />} />
-                                <Route path="/leetcodes/" element={<PublicLeetcode user={user} />} />
-                                <Route path="/myleetcodes" element={<MyLeetcode user={user} />} />
-                                <Route path="/leetcodes/:lid" element={<SingleLeetcode user={user} />} />
-                                <Route path="/leetcodes/addproblem" element={<AddNewLeetcode />} />
-                                <Route path="/leetcodes/:lid/addsolution" element={<AddSolution user={user} />} />
-                                <Route path="/jobs/new/" element={<CreateJobs user={user} />} />
-                                <Route path="/jobs" element={<Jobs user={user} />} />
-                                <Route path="/jobs/edit/:jid" element={<EditJobs user={user} />} />
-                            </Routes>
-                        </div>
-                    </Col>
-                    {/* <Col xs={2}>
+        // user && <HashRouter>
+        <div className="all">
+            <Row>
+                <Col xs={2}>
+                    <div className="left-column">
+                        <Navigation uid={user.googleId} />
+                    </div>
+                </Col>
+                <Col>
+                    <div className="center-column">
+                        <Routes>
+                            <Route path="/rank" element={<Rank />} />
+                            <Route path="/leetcodes/" element={<PublicLeetcode user={user} />} />
+                            <Route path="/myleetcodes" element={<MyLeetcode user={user} />} />
+                            <Route path="/leetcodes/:lid" element={<SingleLeetcode user={user} />} />
+                            <Route path="/leetcodes/addproblem" element={<AddNewLeetcode />} />
+                            <Route path="/leetcodes/:lid/addsolution" element={<AddSolution user={user} />} />
+                            <Route path="/jobs/new/" element={<CreateJobs user={user} />} />
+                            <Route path="/jobs" element={<Jobs user={user} />} />
+                            <Route path="/jobs/edit/:jid" element={<EditJobs user={user} />} />
+                        </Routes>
+                    </div>
+                </Col>
+                {/* <Col xs={2}>
                         <div className="right-column">
                             <WhatsHappening />
                         </div>
                     </Col> */}
-                </Row>
-            </div>
-        </HashRouter>
+            </Row>
+        </div>
+        </HashRouter >
     );
 }
 export default Home; 

@@ -39,10 +39,14 @@ function PublicLeetcode({ user }) {
                                     user++;
                                 }
                             }
-                            each.importance /= user;
-                            each.repeat /= user;
+                            if (user !== 0) {
+                                each.importance /= user;
+                                each.repeat /= user;
+                            }
+
                             allLeetcodes.push(each);
                         }
+                        allLeetcodes.sort((a, b) => a.leetcode_id - b.leetcode_id);
                         setSelected(allLeetcodes);
                         setAll(allLeetcodes);
                     });
@@ -71,8 +75,10 @@ function PublicLeetcode({ user }) {
         if (sort === "leetcode_id") {
             const sorted = [...toSort].sort((a, b) => a.leetcode_id - b.leetcode_id);
             setSelected(sorted);
-        } else if (sort === "importance") {
+        }
+        else if (sort === "importance") {
             const sorted = [...toSort].sort((a, b) => b.importance - a.importance);
+            console.log(sorted);
             setSelected(sorted);
         }
         else if (sort === "repeat") {

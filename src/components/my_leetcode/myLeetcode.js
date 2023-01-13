@@ -32,8 +32,8 @@ function MyLeetcode({ user }) {
                                 // console.log(sol.uid);
                                 // console.log(user.googleId);
                                 if (sol.leetcode_id === each.leetcode_id && sol.uid === user.googleId) {
-                                    each.importance = sol.ratingImportance;
-                                    each.repeat = sol.ratingRepeat;
+                                    each.importance = sol.ratingImportance || 0;
+                                    each.repeat = sol.ratingRepeat || 0;
                                     each.date = sol.date;
                                     allLeetcodes.push(each);
                                 }

@@ -17,7 +17,8 @@ import * as solutionsService from "../../services/solutions-service";
 function MyLeetcode({ user }) {
 
     const leetcode_tags = LEETCODE_TAGS;
-    let tag;
+    const [tag, setTag] = useState("All");
+    const [order, setOrder] = useState("leetcode_id");
     const [allLeetcodes, setAll] = useState([]);
     const [selectedLeetcodes, setSelected] = useState([]);
 
@@ -28,14 +29,22 @@ function MyLeetcode({ user }) {
                     .then((solutions) => {
                         const allLeetcodes = [];
                         for (let each of all) {
-                            for (let sol of solutions) {
-                                // console.log(sol.uid);
-                                // console.log(user.googleId);
-                                if (sol.leetcode_id === each.leetcode_id && sol.uid === user.googleId) {
-                                    each.importance = sol.ratingImportance;
-                                    each.repeat = sol.ratingRepeat;
-                                    each.date = sol.date;
-                                    allLeetcodes.push(each);
+                            if (!each.oa) {
+                                for (let sol of solutions) {
+                                    // console.log(sol.uid);
+                                    // console.log(user.googleId);
+                                    if (sol.leetcode_id === each.leetcode_id && sol.uid === user.googleId) {
+                                        each.importance = sol.ratingImportance;
+                                        each.repeat = sol.ratingRepeat;
+                                        if (each.importance === null) {
+                                            each.importance = 0;
+                                        }
+                                        if (each.repeat === null) {
+                                            each.repeat = 0;
+                                        }
+                                        each.date = sol.date;
+                                        allLeetcodes.push(each);
+                                    }
                                 }
                             }
                         }
@@ -48,8 +57,7 @@ function MyLeetcode({ user }) {
                     });
             })
     }, [])
-
-    const refreshByTag = () => {
+    useEffect(() => {
         if (tag === 'All' || tag === "-") {
             setSelected(allLeetcodes);
         } else {
@@ -63,26 +71,25 @@ function MyLeetcode({ user }) {
             }
             setSelected(tagLeetcodes);
         }
-    };
+    }, [tag])
 
-    const sortProblems = (event) => {
-        const sort = event.target.value;
+    useEffect(() => {
         const toSort = selectedLeetcodes;
-        if (sort === "leetcode_id") {
-            toSort.sort((a, b) => { return b.leetcode_id - a.leetcode_id });
-            console.log(toSort);
-            setSelected(toSort);
-        } else if (sort === "importance") {
-            toSort.sort((a, b) => b.importance - a.importance);
-            console.log(toSort);
-            setSelected(toSort);
+        console.log(selectedLeetcodes);
+        console.log(tag);
+        let sorted;
+        if (order === "leetcode_id") {
+            sorted = [...toSort].sort((a, b) => a.leetcode_id - b.leetcode_id);
         }
-        else if (sort === "repeat") {
-            toSort.sort((a, b) => b.repeat - a.repeat);
-            setSelected(toSort);
+        else if (order === "importance") {
+            sorted = [...toSort].sort((a, b) => b.importance - a.importance);
+            console.log(sorted);
         }
-
-    }
+        else if (order === "repeat") {
+            sorted = [...toSort].sort((a, b) => b.repeat - a.repeat);
+        }
+        setSelected(sorted);
+    }, [order])
 
     const selectLeetcode = (leetcode_id) => {
         const tagLeetcodes = [];
@@ -105,8 +112,9 @@ function MyLeetcode({ user }) {
                             <Form.Control
                                 as="select"
                                 onChange={e => {
-                                    tag = e.target.value;
-                                    refreshByTag();
+                                    // tag = e.target.value;
+                                    // refreshByTag();
+                                    setTag(e.target.value);
                                 }}
                             >
                                 {leetcode_tags.map(option => {
@@ -120,7 +128,8 @@ function MyLeetcode({ user }) {
                                 as="select"
                                 onChange={e => {
                                     // sort = e.target.value;
-                                    sortProblems(e);
+                                    // sortProblems(e);
+                                    setOrder(e.target.value);
                                 }}
                             >
                                 <option value="-">-</option>
@@ -166,7 +175,7 @@ function MyLeetcode({ user }) {
                     <tbody>
                         {
                             selectedLeetcodes.map(problem => {
-                                // console.log(problem.leetcode_id);
+                                console.log(problem.leetcode_id);
                                 return (
                                     <tr>
                                         <td>
@@ -176,8 +185,8 @@ function MyLeetcode({ user }) {
                                         </td>
                                         <td>{problem.name}</td>
                                         <td>{problem.intro}</td>
-                                        <td>{problem.importance.toFixed(0)}</td>
-                                        <td>{problem.repeat.toFixed(0)}</td>
+                                        <td>{problem.importance.toFixed(2)}</td>
+                                        <td>{problem.repeat.toFixed(2)}</td>
                                     </tr>
                                 );
                             })

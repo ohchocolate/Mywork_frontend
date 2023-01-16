@@ -17,7 +17,8 @@ import * as solutionsService from "../../services/solutions-service";
 function PublicLeetcode({ user }) {
 
     const leetcode_tags = LEETCODE_TAGS;
-    let tag;
+    const [tag, setTag] = useState("All");
+    const [order, setOrder] = useState("leetcode_id");
     const [allLeetcodes, setAll] = useState([]);
     const [selectedLeetcodes, setSelected] = useState([]);
 
@@ -28,28 +29,33 @@ function PublicLeetcode({ user }) {
                     .then((solutions) => {
                         const allLeetcodes = [];
                         for (let each of all) {
-                            each.importance = 0;
-                            each.repeat = 0;
-                            let user = 0;
-                            for (let sol of solutions) {
-                                // console.log(sol);
-                                if (sol.leetcode_id === each.leetcode_id) {
-                                    each.importance += sol.ratingImportance;
-                                    each.repeat += sol.ratingRepeat;
-                                    user++;
+                            if (!each.oa) {
+                                each.importance = 0;
+                                each.repeat = 0;
+                                let user = 0;
+                                for (let sol of solutions) {
+                                    // console.log(sol);
+                                    if (sol.leetcode_id === each.leetcode_id) {
+                                        each.importance += sol.ratingImportance;
+                                        each.repeat += sol.ratingRepeat;
+                                        user++;
+                                    }
                                 }
+                                if (user !== 0) {
+                                    each.importance /= user;
+                                    each.repeat /= user;
+                                }
+                                allLeetcodes.push(each);
                             }
-                            each.importance /= user;
-                            each.repeat /= user;
-                            allLeetcodes.push(each);
                         }
+                        allLeetcodes.sort((a, b) => a.leetcode_id - b.leetcode_id);
                         setSelected(allLeetcodes);
                         setAll(allLeetcodes);
                     });
             })
     }, [])
 
-    const refreshByTag = () => {
+    useEffect(() => {
         if (tag === 'All' || tag === "-") {
             setSelected(allLeetcodes);
         } else {
@@ -63,23 +69,25 @@ function PublicLeetcode({ user }) {
             }
             setSelected(tagLeetcodes);
         }
-    };
+    }, [tag])
 
-    const sortProblems = (event) => {
-        const sort = event.target.value;
-        const toSort = allLeetcodes;
-        if (sort === "leetcode_id") {
-            const sorted = [...toSort].sort((a, b) => a.leetcode_id - b.leetcode_id);
-            setSelected(sorted);
-        } else if (sort === "importance") {
-            const sorted = [...toSort].sort((a, b) => b.importance - a.importance);
-            setSelected(sorted);
+    useEffect(() => {
+        const toSort = selectedLeetcodes;
+        console.log(selectedLeetcodes);
+        console.log(tag);
+        let sorted;
+        if (order === "leetcode_id") {
+            sorted = [...toSort].sort((a, b) => a.leetcode_id - b.leetcode_id);
         }
-        else if (sort === "repeat") {
-            const sorted = [...toSort].sort((a, b) => b.repeat - a.repeat);
-            setSelected(sorted);
+        else if (order === "importance") {
+            sorted = [...toSort].sort((a, b) => b.importance - a.importance);
+            console.log(sorted);
         }
-    }
+        else if (order === "repeat") {
+            sorted = [...toSort].sort((a, b) => b.repeat - a.repeat);
+        }
+        setSelected(sorted);
+    }, [order])
 
     const selectLeetcode = (leetcode_id) => {
         const tagLeetcodes = [];
@@ -102,8 +110,9 @@ function PublicLeetcode({ user }) {
                             <Form.Control
                                 as="select"
                                 onChange={e => {
-                                    tag = e.target.value;
-                                    refreshByTag();
+                                    // tag = e.target.value;
+                                    // refreshByTag();
+                                    setTag(e.target.value);
                                 }}
                             >
                                 {leetcode_tags.map(option => {
@@ -117,7 +126,8 @@ function PublicLeetcode({ user }) {
                                 as="select"
                                 onChange={e => {
                                     // sort = e.target.value;
-                                    sortProblems(e);
+                                    // sortProblems(e);
+                                    setOrder(e.target.value);
                                 }}
                             >
                                 <option value="-">-</option>

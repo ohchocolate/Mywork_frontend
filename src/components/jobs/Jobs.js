@@ -143,7 +143,7 @@ function Jobs({ user }) {
                                         <td>{job.term}</td>
                                         <td>{job.jobType}</td>
                                         <td>{job.comment}</td>
-                                        <td>{job.recommendation.toFixed(1)}</td>
+                                        <td>{job.recommendation}</td>
                                         <td>{job.author}</td>
                                         <td>
                                             <div className="icons">

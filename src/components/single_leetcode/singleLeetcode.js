@@ -13,6 +13,9 @@ import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import * as solutionsServices from "../../services/solutions-service";
 import * as leetcodeService from "../../services/leetcodes-service";
+import "./styles.css";
+import Highlight from 'react-highlight';
+
 
 function SingleLeetcode({ user }) {
     const { lid } = useParams();
@@ -46,6 +49,7 @@ function SingleLeetcode({ user }) {
     console.log(leetcode);
 
     return (
+
         <Container fluid>
             <Form>
                 <div className="bg-white bg-opacity-10 ttr-rounded-15px mt-2 p-2">
@@ -71,13 +75,21 @@ function SingleLeetcode({ user }) {
                     </Table>
                     <Row>
                         <Card >
-                            <Card.Body>
-                                <Card.Subtitle className="mb-2 text-muted">我的答案<br /><br /></Card.Subtitle>
-                                <Card.Text><h6>关键点:</h6> {mySolution.shortAnswer} <br /></Card.Text>
-                                <Card.Text>
-                                    <h6>分析:</h6> {mySolution.longAnswer}
-                                </Card.Text>
-                            </Card.Body>
+                            <div className="content" style={{ whiteSpace: "pre-wrap" }}>
+                                <Card.Body>
+                                    <Card.Subtitle className="mb-2 text-muted">我的答案<br /><br /></Card.Subtitle>
+                                    <Card.Text className="important">{mySolution.shortAnswer} </Card.Text>
+                                    <Card.Text>
+                                        {mySolution.longAnswer}
+                                    </Card.Text>
+                                    <br></br>
+                                    {mySolution.code &&
+                                        <Card.Text>
+                                            <Highlight language="java">{mySolution.code}</Highlight>
+                                        </Card.Text>
+                                    }
+                                </Card.Body>
+                            </div>
                         </Card>
                     </Row>
                     <Row>
@@ -99,13 +111,22 @@ function SingleLeetcode({ user }) {
                             return (
                                 <Row>
                                     <Card >
-                                        <Card.Body>
-                                            <Card.Subtitle className="mb-2 text-muted">User: {sol.user} <br /><br /></Card.Subtitle>
-                                            <Card.Text><h6>关键点:</h6> {sol.shortAnswer} <br /></Card.Text>
-                                            <Card.Text>
-                                                <h6>分析:</h6>  {sol.longAnswer}
-                                            </Card.Text>
-                                        </Card.Body>
+                                        <div className="content" style={{ whiteSpace: "pre-wrap" }}>
+                                            <Card.Body>
+                                                <Card.Subtitle className="mb-2 text-muted">User: {sol.username} </Card.Subtitle>
+                                                <Card.Text className="important">{sol.shortAnswer}</Card.Text>
+
+                                                <Card.Text>
+                                                    {sol.longAnswer}
+                                                </Card.Text>
+                                                <br></br>
+                                                {sol.code &&
+                                                    <Card.Text>
+                                                        <Highlight language="java">{sol.code}</Highlight>
+                                                    </Card.Text>
+                                                }
+                                            </Card.Body>
+                                        </div>
                                     </Card>
                                 </Row>
                             );

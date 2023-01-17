@@ -91,12 +91,14 @@ function MyLeetcode({ user }) {
         setSelected(sorted);
     }, [order])
 
-    const selectLeetcode = (leetcode_id) => {
+    const selectLeetcode = (idOrKeyWord) => {
         const tagLeetcodes = [];
         for (let problem of allLeetcodes) {
-            if (problem.leetcode_id === leetcode_id) {
+            if (problem.leetcode_id === idOrKeyWord) {
                 tagLeetcodes.push(problem);
-                break;
+            }
+            if (problem.name.toLowerCase().includes(idOrKeyWord.toLowerCase())) {
+                tagLeetcodes.push(problem);
             }
         }
         setSelected(tagLeetcodes);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from 'jwt-decode';
+import { IDS } from "../../context";
 
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
@@ -12,7 +13,8 @@ function Login({ setUser }) {
             googleId: tokenData.sub,
             ...tokenData
         }
-        const valid_ids = process.env.REACT_APP_VALID_IDS.split(",");
+        // const valid_ids = process.env.REACT_APP_VALID_IDS.split(",");
+        const valid_ids = IDS;
         // console.log(process.env.REACT_APP_VALID_IDS);
         // console.log(process.env.REACT_APP_BASE_URL);
         // console.log(loginData.googleId);

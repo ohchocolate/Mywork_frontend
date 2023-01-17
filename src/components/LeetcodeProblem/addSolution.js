@@ -36,7 +36,6 @@ function AddSolution({ user }) {
     }, [])
 
     const sendData = (event) => {
-
         event.preventDefault();
         const newSolution = {};
         newSolution.uid = user.googleId;
@@ -48,17 +47,13 @@ function AddSolution({ user }) {
         newSolution.ratingImportance = event.target[3].value;
         newSolution.ratingRepeat = event.target[4].value;
 
-        if (newSolution.shortAnswer !== '') {
-            if (solution._id) {
-                solutionsServices.updateSolution(solution._id, newSolution)
-                    .then(reset());
-            }
-            else {
-                solutionsServices.createSolution(newSolution)
-                    .then(reset());
-            }
-        } else {
-            reset();
+        if (solution._id) {
+            solutionsServices.updateSolution(solution._id, newSolution)
+                .then(reset());
+        }
+        else {
+            solutionsServices.createSolution(newSolution)
+                .then(reset());
         }
     }
 

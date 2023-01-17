@@ -15,6 +15,9 @@ import MyLeetcode from "../my_leetcode/myLeetcode";
 import CreateJobs from "../jobs/CreateJobs";
 import Jobs from "../jobs/Jobs";
 import EditJobs from "../jobs/EditJobs";
+import AddOA from "../oa/addOA";
+import PublicOA from "../oa/publicOA";
+import MyOA from "../oa/myOA";
 
 function Home({ user }) {
     return (
@@ -38,6 +41,10 @@ function Home({ user }) {
                                 <Route path="/jobs/new/" element={<CreateJobs user={user} />} />
                                 <Route path="/jobs" element={<Jobs user={user} />} />
                                 <Route path="/jobs/edit/:jid" element={<EditJobs user={user} />} />
+                                <Route path="/oas/addoa" element={<AddOA />} />
+                                <Route path="/oas/addoa/:lid" element={<AddOA />} />
+                                <Route path="/oas/" element={<PublicOA user={user} />} />
+                                <Route path="/myoa/" element={<MyOA user={user} />} />
                             </Routes>
                         </div>
                     </Col>

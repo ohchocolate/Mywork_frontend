@@ -73,8 +73,6 @@ function PublicLeetcode({ user }) {
 
     useEffect(() => {
         const toSort = selectedLeetcodes;
-        console.log(selectedLeetcodes);
-        console.log(tag);
         let sorted;
         if (order === "leetcode_id") {
             sorted = [...toSort].sort((a, b) => a.leetcode_id - b.leetcode_id);
@@ -89,12 +87,14 @@ function PublicLeetcode({ user }) {
         setSelected(sorted);
     }, [order])
 
-    const selectLeetcode = (leetcode_id) => {
+    const selectLeetcode = (idOrKeyWord) => {
         const tagLeetcodes = [];
         for (let problem of allLeetcodes) {
-            if (problem.leetcode_id === leetcode_id) {
+            if (problem.leetcode_id === idOrKeyWord) {
                 tagLeetcodes.push(problem);
-                break;
+            }
+            if (problem.name.toLowerCase().includes(idOrKeyWord.toLowerCase())) {
+                tagLeetcodes.push(problem);
             }
         }
         setSelected(tagLeetcodes);
@@ -141,8 +141,8 @@ function PublicLeetcode({ user }) {
                             <Form.Control
                                 type="text"
                                 onChange={e => {
+                                    setTag('All');
                                     selectLeetcode(e.target.value);
-                                    tag = "All";
                                 }}
                             >
                             </Form.Control>
@@ -173,7 +173,6 @@ function PublicLeetcode({ user }) {
                     <tbody>
                         {
                             selectedLeetcodes.map(problem => {
-                                console.log(problem.leetcode_id);
                                 return (
                                     <tr>
                                         <td>

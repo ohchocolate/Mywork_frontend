@@ -6,7 +6,7 @@ import Col from "react-bootstrap/esm/Col";
 import Form from 'react-bootstrap/Form';
 import { useState, useEffect } from "react";
 import { LEETCODE_TAGS } from "../../context.js";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import Nav from 'react-bootstrap/Nav';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -15,6 +15,7 @@ import * as leetcodeService from "../../services/leetcodes-service";
 
 function AddNewLeetcode() {
 
+    const navigate = useNavigate();
     const [allProblems, setAll] = useState([]);
     const [newProblem, setProblem] = useState({})
     const [mongoId, setMongoId] = useState();
@@ -124,7 +125,7 @@ function AddNewLeetcode() {
     }
 
     const reset = () => {
-        window.location.reload();
+        navigate(`/leetcodes/${leetcode_id}`);
     }
 
     return (

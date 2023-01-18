@@ -36,7 +36,6 @@ function AddSolution({ user }) {
     }, [])
 
     const sendData = (event) => {
-
         event.preventDefault();
         const newSolution = {};
         newSolution.uid = user.googleId;
@@ -48,22 +47,24 @@ function AddSolution({ user }) {
         newSolution.ratingImportance = event.target[3].value;
         newSolution.ratingRepeat = event.target[4].value;
 
-        if (newSolution.shortAnswer !== '') {
-            if (solution._id) {
-                solutionsServices.updateSolution(solution._id, newSolution)
-                    .then(reset());
-            }
-            else {
-                solutionsServices.createSolution(newSolution)
-                    .then(reset());
-            }
-        } else {
-            reset();
+        if (solution._id) {
+            solutionsServices.updateSolution(solution._id, newSolution)
+                .then(reset());
+        }
+        else {
+            solutionsServices.createSolution(newSolution)
+                .then(reset());
         }
     }
 
     const reset = () => {
-        navigate(`/leetcodes/${problem.leetcode_id}`);
+        console.log(solution);
+        if (solution.leetcode_id.length > 5) {
+            navigate(`/oas/${problem.leetcode_id}`);
+        } else {
+            navigate(`/leetcodes/${problem.leetcode_id}`);
+        }
+
     }
 
     return (

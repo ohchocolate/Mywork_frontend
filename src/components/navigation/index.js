@@ -7,14 +7,15 @@ function Navigation({ uid }) {
   // console.log(location.pathname);
   const links = [
     { label: 'Rank', icon: 'fa-circle-up', path: '/rank' },
-    { label: 'Job', icon: 'fa-sharp fa-solid fa-phone', path: '/jobs' },
+
     { label: 'Leetcode', icon: 'fa-sharp fa-solid fa-chalkboard', path: `/leetcodes` },
     { label: 'My Leetcode', icon: 'fa-sharp fa-solid fa-bell', path: '/myleetcodes' },
-    { label: 'OA', icon: 'fa-book-copy', path: '/notifications' },
-    { label: 'My OA', icon: 'fa-book', path: '/messages' },
-    { label: 'BQ', icon: 'fa-bookmark', path: '/bookmarks' },
-    { label: 'My BQ', icon: 'fa-list', path: '/lists' },
-    { label: 'Concept', icon: 'fa-atom-simple', path: '/profile' },
+    { label: 'OA', icon: 'fa-book-copy', path: '/oas' },
+    { label: 'My OA', icon: 'fa-book', path: '/myoa' },
+    { label: 'BQ', icon: 'fa-bookmark', path: '/bqs' },
+    { label: 'My BQ', icon: 'fa-atom-simple', path: '/mybq' },
+    { label: 'Job', icon: 'fa-sharp fa-solid fa-phone', path: '/jobs' },
+    // { label: 'Concept', icon: 'fa-atom-simple', path: '/profile' },
   ];
   return (
     <div className="ttr-navigation">

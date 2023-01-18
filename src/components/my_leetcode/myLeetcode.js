@@ -29,7 +29,7 @@ function MyLeetcode({ user }) {
                     .then((solutions) => {
                         const allLeetcodes = [];
                         for (let each of all) {
-                            if (!each.oa) {
+                            if (!each.oa && !each.bq && !each.bagu) {
                                 for (let sol of solutions) {
                                     // console.log(sol.uid);
                                     // console.log(user.googleId);
@@ -91,12 +91,14 @@ function MyLeetcode({ user }) {
         setSelected(sorted);
     }, [order])
 
-    const selectLeetcode = (leetcode_id) => {
+    const selectLeetcode = (idOrKeyWord) => {
         const tagLeetcodes = [];
         for (let problem of allLeetcodes) {
-            if (problem.leetcode_id === leetcode_id) {
+            if (problem.leetcode_id === idOrKeyWord) {
                 tagLeetcodes.push(problem);
-                break;
+            }
+            if (problem.name.toLowerCase().includes(idOrKeyWord.toLowerCase())) {
+                tagLeetcodes.push(problem);
             }
         }
         setSelected(tagLeetcodes);

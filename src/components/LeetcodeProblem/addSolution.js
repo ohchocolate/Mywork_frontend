@@ -58,7 +58,13 @@ function AddSolution({ user }) {
     }
 
     const reset = () => {
-        navigate(`/leetcodes/${problem.leetcode_id}`);
+        console.log(solution);
+        if (solution.leetcode_id.length > 5) {
+            navigate(`/oas/${problem.leetcode_id}`);
+        } else {
+            navigate(`/leetcodes/${problem.leetcode_id}`);
+        }
+
     }
 
     return (

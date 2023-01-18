@@ -69,7 +69,7 @@ function DisplayOA({ display, setName }) {
                                         </td>
                                         <td>
                                             <Nav.Item>
-                                                <Nav.Link href={"#/leetcodes/" + problem.leetcode_id}>解析</Nav.Link>
+                                                <Nav.Link href={"#/oas/" + problem.leetcode_id}>解析</Nav.Link>
                                             </Nav.Item>
                                         </td>
                                         <td>

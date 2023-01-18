@@ -11,10 +11,9 @@ import { Link, useParams } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import "./styles.css";
-import * as leetcodeService from "../../services/leetcodes-service";
-import * as solutionsService from "../../services/solutions-service";
+import { LEADERS } from "../../context.js";
 
-function DisplayOA({ display, setName }) {
+function DisplayBQ({ display, setName, setTag }) {
 
     return (
         <Container fluid>
@@ -22,7 +21,7 @@ function DisplayOA({ display, setName }) {
                 <Form>
                     <Row>
                         <Form.Group controlId="formBasicSelect" as={Col}>
-                            <Form.Label>Search in English Name</Form.Label>
+                            <Form.Label>Search</Form.Label>
                             <Form.Control
                                 type="text"
                                 onChange={e => {
@@ -31,8 +30,23 @@ function DisplayOA({ display, setName }) {
                             >
                             </Form.Control>
                         </Form.Group>
+
+                        <Form.Group controlId="formBasicSelect" as={Col}>
+                            <Form.Label>Select A Tag</Form.Label>
+                            <Form.Control
+                                as="select"
+                                onChange={e => {
+                                    setTag(e.target.value);
+                                }}
+                            >
+                                {LEADERS.map(option => {
+                                    return <option value={option}>{option}</option>
+                                })}
+                            </Form.Control>
+                        </Form.Group>
+
                         <Form.Group as={Col}>
-                            <a href="#/oas/addoa">
+                            <a href="#/bqs/addbq">
                                 <Button className="button" type="button" class="btn">
                                     New
                                 </Button>
@@ -46,10 +60,7 @@ function DisplayOA({ display, setName }) {
                 <Table striped bordered hover>
                     <thead>
                         <tr>
-                            <th>Company</th>
-                            <th>时间</th>
-                            <th>简述</th>
-                            <th></th>
+                            <th>Question</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -60,21 +71,14 @@ function DisplayOA({ display, setName }) {
                                 return (
                                     <tr>
                                         <td>{problem.name}</td>
-                                        <td>{problem.term}</td>
-                                        <td>{problem.intro}</td>
                                         <td>
                                             <Nav.Item>
-                                                <Nav.Link href={problem.link}>链接</Nav.Link>
+                                                <Nav.Link href={"#/bqs/" + problem.leetcode_id}>解析</Nav.Link>
                                             </Nav.Item>
                                         </td>
                                         <td>
                                             <Nav.Item>
-                                                <Nav.Link href={"#/leetcodes/" + problem.leetcode_id}>解析</Nav.Link>
-                                            </Nav.Item>
-                                        </td>
-                                        <td>
-                                            <Nav.Item>
-                                                <Nav.Link href={"#/oas/addoa/" + problem.leetcode_id}>编辑</Nav.Link>
+                                                <Nav.Link href={"#/bqs/addbq/" + problem.leetcode_id}>编辑</Nav.Link>
                                             </Nav.Item>
                                         </td>
                                     </tr>
@@ -88,4 +92,4 @@ function DisplayOA({ display, setName }) {
     )
 }
 
-export default DisplayOA;
+export default DisplayBQ;

@@ -29,7 +29,7 @@ function PublicLeetcode({ user }) {
                     .then((solutions) => {
                         const allLeetcodes = [];
                         for (let each of all) {
-                            if (!each.oa) {
+                            if (!each.oa && !each.bq && !each.bagu) {
                                 each.importance = 0;
                                 each.repeat = 0;
                                 let user = 0;

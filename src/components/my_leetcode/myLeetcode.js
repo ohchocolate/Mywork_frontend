@@ -29,7 +29,7 @@ function MyLeetcode({ user }) {
                     .then((solutions) => {
                         const allLeetcodes = [];
                         for (let each of all) {
-                            if (!each.oa) {
+                            if (!each.oa && !each.bq && !each.bagu) {
                                 for (let sol of solutions) {
                                     // console.log(sol.uid);
                                     // console.log(user.googleId);

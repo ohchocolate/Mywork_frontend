@@ -18,6 +18,12 @@ import EditJobs from "../jobs/EditJobs";
 import AddOA from "../oa/addOA";
 import PublicOA from "../oa/publicOA";
 import MyOA from "../oa/myOA";
+import SolOA from "../oa/solOA";
+import SolBQ from "../bq/solBQ";
+import MyBQ from "../bq/myBQ";
+import PublicBQ from "../bq/publicBQ";
+import AddBQ from "../bq/addBQ";
+import AddBQSol from "../bq/addBQSol";
 
 function Home({ user }) {
     return (
@@ -41,10 +47,19 @@ function Home({ user }) {
                                 <Route path="/jobs/new/" element={<CreateJobs user={user} />} />
                                 <Route path="/jobs" element={<Jobs user={user} />} />
                                 <Route path="/jobs/edit/:jid" element={<EditJobs user={user} />} />
+
                                 <Route path="/oas/addoa" element={<AddOA />} />
                                 <Route path="/oas/addoa/:lid" element={<AddOA />} />
                                 <Route path="/oas/" element={<PublicOA user={user} />} />
                                 <Route path="/myoa/" element={<MyOA user={user} />} />
+                                <Route path="/oas/:lid" element={<SolOA user={user} />} />
+
+                                <Route path="/bqs/addbq" element={<AddBQ />} />
+                                <Route path="/bqs/addbq/:lid" element={<AddBQ />} />
+                                <Route path="/bqs/" element={<PublicBQ user={user} />} />
+                                <Route path="/mybq/" element={<MyBQ user={user} />} />
+                                <Route path="/bqs/:lid" element={<SolBQ user={user} />} />
+                                <Route path="/bqs/:lid/addsol" element={<AddBQSol user={user} />} />
                             </Routes>
                         </div>
                     </Col>

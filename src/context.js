@@ -3,7 +3,7 @@ const LEETCODE_TAGS = ["-", "All", "String", "Linked List", "Map", "Tree", "Stac
     "Backtracking", "Sliding Window", "Divide&Conquer", "Greedy", "DP"
 ].sort();
 
-const IDS = ["110123109207149362082", "118087533209934535190", "112079484338516735280"];
+const IDS = ["110123109207149362082", "118087533209934535190", "112079484338516735280", "114151274015813699050", "115494383505902309109", "100906593791818157412"];
 const LEADERS = ["-", "All", "Customer Obsession", "Ownership", "Invent and Simplify", "Are Right, A Lot", "Learn and Be Curious", "Hire and Develop the Best", "Insist on the Highest Standards",
     "Think Big",
     "Bias for Action",

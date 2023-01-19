@@ -77,7 +77,7 @@ function MyLeetcode({ user }) {
         const toSort = selectedLeetcodes;
         console.log(selectedLeetcodes);
         console.log(tag);
-        let sorted;
+        let sorted = [];
         if (order === "leetcode_id") {
             sorted = [...toSort].sort((a, b) => a.leetcode_id - b.leetcode_id);
         }

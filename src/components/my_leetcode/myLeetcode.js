@@ -87,6 +87,8 @@ function MyLeetcode({ user }) {
         }
         else if (order === "repeat") {
             sorted = [...toSort].sort((a, b) => b.repeat - a.repeat);
+        } else {
+            return;
         }
         setSelected(sorted);
     }, [order])

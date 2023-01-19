@@ -1,5 +1,5 @@
 import React from "react";
-import Select from 'react-select';
+import Select frigiom 'react-select';
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";

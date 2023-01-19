@@ -73,7 +73,7 @@ function PublicLeetcode({ user }) {
 
     useEffect(() => {
         const toSort = selectedLeetcodes;
-        let sorted;
+        let sorted = [];
         if (order === "leetcode_id") {
             sorted = [...toSort].sort((a, b) => a.leetcode_id - b.leetcode_id);
         }

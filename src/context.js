@@ -3,7 +3,15 @@ const LEETCODE_TAGS = ["-", "All", "String", "Linked List", "Map", "Tree", "Stac
     "Backtracking", "Sliding Window", "Divide&Conquer", "Greedy", "DP"
 ].sort();
 
+const IDS = ["110123109207149362082", "118087533209934535190", "112079484338516735280", "114151274015813699050", "115494383505902309109", "100906593791818157412"];
+const LEADERS = ["-", "All", "Customer Obsession", "Ownership", "Invent and Simplify", "Are Right, A Lot", "Learn and Be Curious", "Hire and Develop the Best", "Insist on the Highest Standards",
+    "Think Big",
+    "Bias for Action",
+    "Frugality",
+    "Earn Trust",
+    "Dive Deep", "Have Backbone; Disagree and Commit", "Deliver Results", "Strive to be Earths Best Employer", "Success and Scale Bring Broad Responsibility"
+];
 const JOBS_TYPES = ["All", "Intern", "Coop", "Full Time"];
 const JOBS_TERMS = ["All", "Fall 2023", "Spring 2024", "Summer 2024"];
 
-export { LEETCODE_TAGS, JOBS_TERMS, JOBS_TYPES };
+export { LEETCODE_TAGS, JOBS_TERMS, JOBS_TYPES, IDS, LEADERS };

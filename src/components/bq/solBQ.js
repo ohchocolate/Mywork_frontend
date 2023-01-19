@@ -17,7 +17,7 @@ import "./styles.css";
 import Highlight from 'react-highlight';
 
 
-function SingleLeetcode({ user }) {
+function SolBQ({ user }) {
     const { lid } = useParams();
     const userId = user.googleId;
     const [leetcode, setLeetcode] = useState({});
@@ -25,13 +25,11 @@ function SingleLeetcode({ user }) {
     const [otherSolutions, setOthers] = useState([]);
 
     useEffect(() => {
-
         leetcodeService.findLeetcodesByID(lid)
             .then(problem => setLeetcode(problem[0]));
 
         solutionsServices.findSolutionsByLid(lid)
             .then(solutions => {
-                // console.log(solutions);
                 const othersArr = [];
                 solutions.map(
                     sol => {
@@ -60,32 +58,28 @@ function SingleLeetcode({ user }) {
                     <Table>
                         <thead>
                             <tr>
-                                <th>题号</th>
                                 <th>题目</th>
-                                <th>简介</th>
                             </tr>
                             <tr>
-                                <th>{lid}</th>
                                 <th>{leetcode.name}</th>
-                                <td>{leetcode.intro}</td>
+                            </tr>
+                            <tr className="tags">
+                                {leetcode.tags && leetcode.tags.map(tag => {
+                                    return (<tb>{'[ ' + tag + ' ]'}</tb>)
+                                }
+                                )}
                             </tr>
                         </thead>
+
                     </Table>
                     <Row>
                         <Card >
                             <div className="content" style={{ whiteSpace: "pre-wrap" }}>
                                 <Card.Body>
                                     <Card.Subtitle className="mb-2 text-muted">我的答案<br /><br /></Card.Subtitle>
-                                    <Card.Text className="important">{mySolution.shortAnswer} </Card.Text>
                                     <Card.Text>
-                                        {mySolution.longAnswer}
+                                        {mySolution.code}
                                     </Card.Text>
-                                    <br></br>
-                                    {mySolution.code &&
-                                        <Card.Text>
-                                            <Highlight language="java">{mySolution.code}</Highlight>
-                                        </Card.Text>
-                                    }
                                 </Card.Body>
                             </div>
                         </Card>
@@ -93,7 +87,7 @@ function SingleLeetcode({ user }) {
                     <Row>
                         <div>
                             <p></p>
-                            <Link to={"/leetcodes/" + leetcode.leetcode_id + "/addsolution"} state={{ solution: mySolution, problem: leetcode }}>
+                            <Link to={"/bqs/" + leetcode.leetcode_id + "/addsol"} state={{ solution: mySolution, problem: leetcode }}>
                                 <Button variant="danger">
                                     Add/Edit My Solution
                                 </Button>
@@ -112,17 +106,7 @@ function SingleLeetcode({ user }) {
                                         <div className="content" style={{ whiteSpace: "pre-wrap" }}>
                                             <Card.Body>
                                                 <Card.Subtitle className="mb-2 text-muted">User: {sol.username} </Card.Subtitle>
-                                                <Card.Text className="important">{sol.shortAnswer}</Card.Text>
-
-                                                <Card.Text>
-                                                    {sol.longAnswer}
-                                                </Card.Text>
-                                                <br></br>
-                                                {sol.code &&
-                                                    <Card.Text>
-                                                        <Highlight language="java">{sol.code}</Highlight>
-                                                    </Card.Text>
-                                                }
+                                                <Card.Text className="important">{sol.code}</Card.Text>
                                             </Card.Body>
                                         </div>
                                     </Card>
@@ -137,4 +121,4 @@ function SingleLeetcode({ user }) {
 
 }
 
-export default SingleLeetcode;
+export default SolBQ;

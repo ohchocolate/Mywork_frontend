@@ -16,6 +16,5 @@ export const createLeetcode = (leetcode) =>
     .then(response => response.data);
 
 export const updateLeetcode = (mid, leetcode) =>
-    // console.log(leetcode);
     axios.put(`${API}/mongodbid/${mid}`, leetcode)
     .then(response => response.data);

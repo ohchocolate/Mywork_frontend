@@ -17,7 +17,7 @@ import "./styles.css";
 import Highlight from 'react-highlight';
 
 
-function SingleLeetcode({ user }) {
+function SolOA({ user }) {
     const { lid } = useParams();
     const userId = user.googleId;
     const [leetcode, setLeetcode] = useState({});
@@ -46,8 +46,9 @@ function SingleLeetcode({ user }) {
             });
     }, []);
 
-    return (
+    console.log(leetcode);
 
+    return (
         <Container fluid>
             <Form>
                 <div className="bg-white bg-opacity-10 ttr-rounded-15px mt-2 p-2">
@@ -60,12 +61,6 @@ function SingleLeetcode({ user }) {
                     <Table>
                         <thead>
                             <tr>
-                                <th>题号</th>
-                                <th>题目</th>
-                                <th>简介</th>
-                            </tr>
-                            <tr>
-                                <th>{lid}</th>
                                 <th>{leetcode.name}</th>
                                 <td>{leetcode.intro}</td>
                             </tr>
@@ -137,4 +132,4 @@ function SingleLeetcode({ user }) {
 
 }
 
-export default SingleLeetcode;
+export default SolOA;

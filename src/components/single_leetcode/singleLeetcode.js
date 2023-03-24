@@ -25,7 +25,6 @@ function SingleLeetcode({ user }) {
     const [otherSolutions, setOthers] = useState([]);
 
     useEffect(() => {
-
         leetcodeService.findLeetcodesByID(lid)
             .then(problem => setLeetcode(problem[0]));
 

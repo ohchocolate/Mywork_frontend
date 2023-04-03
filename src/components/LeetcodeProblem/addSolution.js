@@ -35,7 +35,7 @@ function AddSolution({ user }) {
         setRepeat(solution.ratingRepeat);
     }, [])
 
-    const sendData = (event) => {
+    const sendData = async (event) => {
         event.preventDefault();
         const newSolution = {};
         newSolution.uid = user.googleId;
@@ -48,13 +48,16 @@ function AddSolution({ user }) {
         newSolution.ratingRepeat = event.target[4].value;
 
         if (solution._id) {
-            solutionsServices.updateSolution(solution._id, newSolution)
-                .then(reset());
+            await solutionsServices.updateSolution(solution._id, newSolution);
         }
         else {
-            solutionsServices.createSolution(newSolution)
-                .then(reset());
+            await solutionsServices.createSolution(newSolution);
         }
+
+        setTimeout(() => {
+            reset()
+        }, 100);
+
     }
 
     const reset = () => {
@@ -64,6 +67,9 @@ function AddSolution({ user }) {
             navigate(`/leetcodes/${problem.leetcode_id}`);
         }
 
+        // setTimeout(() => {
+        //     window.location.reload();
+        // }, 100);
     }
 
     return (

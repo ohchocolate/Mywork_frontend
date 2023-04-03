@@ -1,8 +1,4 @@
 import React from "react";
-<<<<<<< HEAD
-import Select from 'react-select';
-=======
->>>>>>> e32effc9eebbd4a8ccbd26e8184f637adda613dd
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";

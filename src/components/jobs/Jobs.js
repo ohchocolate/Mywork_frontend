@@ -1,5 +1,8 @@
 import React from "react";
+<<<<<<< HEAD
 import Select from 'react-select';
+=======
+>>>>>>> e32effc9eebbd4a8ccbd26e8184f637adda613dd
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
@@ -75,99 +78,128 @@ function Jobs({ user }) {
         jobsService.updateMyJobs(newMyJob.uid, newMyJob);
     }
 
-    return (
-        <Container fluid>
-            <div className="bg-white bg-opacity-10 ttr-rounded-15px mt-2 p-2">
-                <Form>
-                    <Row>
-                        <Form.Group controlId="formBasicSelect" as={Col}>
-                            <Form.Label>Select Term</Form.Label>
-                            <Form.Control
-                                as="select"
-                                onChange={e => {
-                                    setTerm(e.target.value);
-                                }}
-                            >
-                                {JOBS_TERMS.map(option => {
-                                    return <option value={option}>{option}</option>
-                                })}
-                            </Form.Control>
-                        </Form.Group>
-                        <Form.Group controlId="formBasicSelect" as={Col}>
-                            <Form.Label>Select Type</Form.Label>
-                            <Form.Control
-                                as="select"
-                                onChange={e => {
-                                    setType(e.target.value);
-                                }}
-                            >
-                                {JOBS_TYPES.map(option => {
-                                    return <option value={option}>{option}</option>
-                                })}
-                            </Form.Control>
-                        </Form.Group>
-                        <Form.Group as={Col}>
-                            <a href="#/jobs/new">
-                                <Button className="button" type="button" class="btn">
-                                    New
-                                </Button>
-                            </a>
-                        </Form.Group>
-                    </Row>
-                </Form>
+    return (<
+        Container fluid >
+        <
+        div className="bg-white bg-opacity-10 ttr-rounded-15px mt-2 p-2" >
+            <
+        Form >
+                <
+        Row >
+                    <
+        Form.Group controlId="formBasicSelect"
+                        as={Col} >
+                        <
+        Form.Label > Select Term < /Form.Label> <
+        Form.Control as="select"
+                                onChange={
+                                    e => {
+                                        setTerm(e.target.value);
+                                    }
+                                } >
+                                {
+                                    JOBS_TERMS.map(option => {
+                                        return <option value={option} > {option} < /option>
+            })
+        } <
+        /Form.Control> <
+        /Form.Group> <
+        Form.Group controlId="formBasicSelect"
+                                                as={Col} >
+                                                <
+        Form.Label > Select Type < /Form.Label> <
+        Form.Control as="select"
+                                                        onChange={
+                                                            e => {
+                                                                setType(e.target.value);
+                                                            }
+                                                        } >
+                                                        {
+                                                            JOBS_TYPES.map(option => {
+                                                                return <option value={option} > {option} < /option>
+            })
+        } <
+        /Form.Control> <
+        /Form.Group> <
+        Form.Group as={Col} >
+                                                                        <
+        a href="#/jobs/new" >
+                                                                            <
+        Button className="button"
+                                                                                type="button"
+                                                                                class="btn" >
+                                                                                New <
+        /Button> <
+        /a> <
+        /Form.Group> <
+        /Row> <
+        /Form>
 
-                <p></p>
+                                                                                <
+        p > < /p>
 
-                <Table striped bordered hover>
-                    <thead>
-                        <tr>
-                            <th>公司</th>
-                            <th>Term</th>
-                            <th>Type</th>
-                            <th>备注</th>
-                            <th>推荐</th>
-                            <th>上传</th>
-                            <th>已投</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            displayJobs.map(job => {
-                                return (
-                                    <tr>
-                                        <td>
-                                            <Nav.Item>
-                                                <Nav.Link href={job.link} target="_blank">{job.company}</Nav.Link>
-                                            </Nav.Item>
-                                        </td>
-                                        <td>{job.term}</td>
-                                        <td>{job.jobType}</td>
-                                        <td>{job.comment}</td>
-                                        <td>{job.recommendation}</td>
-                                        <td>{job.author}</td>
-                                        <td>
-                                            <div className="icons">
-                                                <span onClick={() => toggleApply(job._id)}>
-                                                    {
-                                                        myJobs.includes(job._id) ?
-                                                            <i className="fa-sharp fa-solid fa-file-check fa-2x"
-                                                                style={{ color: 'red' }} ></i>
-                                                            :
-                                                            <i className="fa-sharp fa-light fa-file-check fa-2x"></i>
-                                                    }
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td><Nav.Link href={`#/jobs/edit/${job._id}`}>编辑</Nav.Link></td>
-                                    </tr>
-                                );
-                            })
-                        }
-                    </tbody>
-                </Table>
-            </div>
-        </Container >
-    )
+                                                                                    <
+        Table striped bordered hover >
+                                                                                        <
+        thead >
+                                                                                            <
+        tr >
+                                                                                                <
+        th > 公司 < /th> <
+        th > Term < /th> <
+        th > Type < /th> <
+        th > 备注 < /th> <
+        th > 推荐 < /th> <
+        th > 上传 < /th> <
+        th > 已投 < /th> <
+        /tr> <
+        /thead> <
+        tbody > {
+                                                                                                                                    displayJobs.map(job => {
+                                                                                                                                        return (<
+                    tr >
+                                                                                                                                            <
+                    td >
+                                                                                                                                                <
+                    Nav.Item >
+                                                                                                                                                    <
+                    Nav.Link href={job.link}
+                                                                                                                                                        target="_blank" > {job.company} < /Nav.Link> <
+                    /Nav.Item> <
+                    /td> <
+                    td > {job.term} < /td> <
+                    td > {job.jobType} < /td> <
+                    td > {job.comment} < /td> <
+                    td > {job.recommendation} < /td> <
+                    td > {job.author} < /td> <
+                    td >
+                                                                                                                                                                                <
+                    div className="icons" >
+                                                                                                                                                                                    <
+                    span onClick={
+                                                                                                                                                                                            () => toggleApply(job._id)} > {
+                                                                                                                                                                                            myJobs.includes(job._id) ?
+                                                                                                                                                                                                <
+                        i className="fa-sharp fa-solid fa-file-check fa-2x"
+                                                                                                                                                                                                    style={
+                                                                                                                                                                                                        { color: 'red' }} > < /i> :
+                                                                                                                                                                                                    <
+                            i className="fa-sharp fa-light fa-file-check fa-2x" > < /i>
+                    } <
+                    /span> <
+                    /div> <
+                    /td> <
+                                                                                                                                                                                                            td > < Nav.Link href={`#/jobs/edit/${job._id}`} > 编辑 < /Nav.Link></td >
+                                                                                                                                                                                                        <
+                    /tr>
+                                                                                                                                                                                                        );
+            })
+        } <
+        /tbody> <
+        /Table> <
+        /div> <
+        /Container >
+                                                                                                                                                                                                        )
 }
 
-export default Jobs;
+                                                                                                                                                                                                        export default Jobs;

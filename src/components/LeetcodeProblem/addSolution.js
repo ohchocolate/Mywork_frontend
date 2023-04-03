@@ -67,9 +67,9 @@ function AddSolution({ user }) {
             navigate(`/leetcodes/${problem.leetcode_id}`);
         }
 
-        // setTimeout(() => {
-        //     window.location.reload();
-        // }, 100);
+        setTimeout(() => {
+            window.location.reload();
+        }, 100);
     }
 
     return (

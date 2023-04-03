@@ -56,7 +56,7 @@ function AddSolution({ user }) {
 
         setTimeout(() => {
             reset()
-        }, 100);
+        }, 1000);
 
     }
 
@@ -69,7 +69,7 @@ function AddSolution({ user }) {
 
         setTimeout(() => {
             window.location.reload();
-        }, 100);
+        }, 1000);
     }
 
     return (

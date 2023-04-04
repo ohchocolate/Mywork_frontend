@@ -56,20 +56,20 @@ function AddSolution({ user }) {
 
         setTimeout(() => {
             reset()
-        }, 10);
+        }, 100);
 
     }
 
     const reset = () => {
         if (problem.leetcode_id.length > 5) {
-            navigate(`/myoa`);
+            navigate(`/oas/${problem.leetcode_id}`);
         } else {
-            navigate(`/myleetcodes`);
+            navigate(`/leetcodes/${problem.leetcode_id}`);
         }
 
         // setTimeout(() => {
         //     window.location.reload();
-        // }, 1000);
+        // }, 100);
     }
 
     return (
